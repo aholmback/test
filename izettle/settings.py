@@ -25,7 +25,7 @@ SECRET_KEY = 'izqc^=4s+0=51b%#3@v8mngjx*d&q9xb^e*t2*xx0%0k$9dlnf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'izettle',
 ]
 
 MIDDLEWARE = [
