@@ -12,11 +12,13 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class Variant(models.Model):
     name = models.CharField(max_length=255)
 
     def __str__(self):
         return self.name
+
 
 class SKU(models.Model):
     price = models.FloatField()
@@ -28,5 +30,5 @@ class SKU(models.Model):
         tpl += ' ({variant})' if self.variant else ''
         return tpl.format(
             product=self.product.name,
-            variant=variant_name,
+            variant=self.variant.name if self.variant else '',
             )
