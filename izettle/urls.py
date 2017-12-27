@@ -21,6 +21,8 @@ from . import views
 router = DefaultRouter('api')
 router.register('test', views.TestViewSet)
 router.register('product', views.ProductViewSet)
+router.register('variant', views.VariantViewSet)
+router.register('sku', views.SKUViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

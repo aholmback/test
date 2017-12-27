@@ -9,3 +9,11 @@ class TestViewSet(viewsets.ModelViewSet):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = models.Product.objects.all()
     serializer_class = serializers.ProductSerializer
+
+class VariantViewSet(viewsets.ModelViewSet):
+    queryset = models.Variant.objects.all()
+    serializer_class = serializers.VariantSerializer
+
+class SKUViewSet(viewsets.ModelViewSet):
+    queryset = models.SKU.objects.all()
+    serializer_class = serializers.SKUSerializer
