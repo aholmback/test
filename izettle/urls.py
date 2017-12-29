@@ -27,4 +27,5 @@ router.register('sku', views.SKUViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(router.urls, namespace='api')),
+    url(r'^contexts/product/', views.product),
 ]
