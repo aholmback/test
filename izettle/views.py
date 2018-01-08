@@ -1,6 +1,8 @@
 from django.http import JsonResponse
 from .models import Product
 from rest_framework import viewsets
+from django.views.decorators.csrf import csrf_exempt
+import json
 from . import serializers, models
 
 
@@ -40,4 +42,30 @@ def product(request):
     #print(context)
 
     return JsonResponse(context, safe=False)
+
+@csrf_exempt
+def saveProduct(request):
+    data = json.loads(request.body.decode('utf-8'))
+    product = models.Product.objects.get(pk=data['id'])
+    print(product)
+    product.name = data['name']
+    product.save()
+
+    sku_ids = []
+
+    for sku in data['variants']:
+        sku_ids.append(sku['sku_id'])
+        variant, created = models.Variant.objects.get_or_create(name=sku['variant_name'])
+        defaults = {
+            'variant': variant,
+            'price': sku['price'],
+            'product': product,
+        }
+
+        skuModel, updated = models.SKU.objects.update_or_create(pk=sku['sku_id'], defaults=defaults)
+
+    models.SKU.objects.filter(product=product).exclude(pk__in=sku_ids).delete()
+
+    return JsonResponse(data)
+
 
