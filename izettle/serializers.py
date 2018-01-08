@@ -15,6 +15,12 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class VariantSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        variant_name = validated_data.pop('name')
+        variant, created = models.Variant.objects.get_or_create(name=variant_name)
+        print(created)
+        return variant
+
     class Meta:
         model = models.Variant
         fields = '__all__'
