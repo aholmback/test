@@ -3,6 +3,12 @@ from . import models
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        product_name = validated_data.pop('name')
+        product, created = models.Product.objects.get_or_create(name=product_name)
+        print('Product: {}, Created: {}'.format(product, created))
+        return product
+
     class Meta:
         model = models.Product
         fields = '__all__'
