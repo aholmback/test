@@ -30,5 +30,5 @@ class SKU(models.Model):
         tpl += ' ({variant})' if self.variant else ''
         return tpl.format(
             product=self.product.name,
-            variant=self.variant.name if self.variant else '',
-            )
+            variant=self.variant.name if self.variant else ''
+        )

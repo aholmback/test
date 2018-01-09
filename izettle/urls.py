@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^api/', include(router.urls, namespace='api')),
     url(r'^contexts/product/', views.product),
     url(r'^contexts/saveproduct/', views.saveProduct),
+    #url(r'^contexts/product/(?P<id>\d+)/$', views.productIdContext),
 ]

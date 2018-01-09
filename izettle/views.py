@@ -69,3 +69,12 @@ def saveProduct(request):
     return JsonResponse(data)
 
 
+
+def productIdContext(request, id):
+
+    print('Request: {}, id: {}'.format(request, id))
+    product = Product.objects.filter(pk=id).values('id', 'name', 'sku', 'sku__variant__name')
+    product2 = Product.objects.get(pk=id)
+
+    context = product2
+    return JsonResponse(context, safe=False)
